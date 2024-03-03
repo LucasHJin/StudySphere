@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %} 
+{% block content%}
+    
+    <div class="container p-6">
+        <div class="col-xl-12 col-md-6 container-flex">
+
+            <div>
+                <h5 class="mt-5 fw-bold">Welcome!</h5>
+                <p class="fw-bold fs-14 ">Sign in to continue.</p>
+
+                <form class="login col-md-8" method="POST">
+
+                    <div class="mb-3 form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"/>
+                    </div>
+
+                    <div class="mb-2 form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"/>
+                    </div>
+                    <br />
+                    <button class="btn btn-danger" type="submit">
+                        Login
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+    
+ {%endblock%}
