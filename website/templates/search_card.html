@@ -106,7 +106,7 @@
             </button>-->
             <div class="row align-items-center justify-content-between">
                 <div class="col-11">
-                    <form action="/respond_card" method="POST">
+                    <form action="/respond_card" method="GET">
                         <button type="submit" class="btn btn-custom-blue-rev">
                             <a class="text-light" href="{{ url_for('views.respond_card', question_id=question.id) }}">{{ question.data }}</a>
                         </button>
@@ -115,7 +115,7 @@
                 </div>
                 <!-- Close button -->
                 <div class="col-1 align-items-center justify-content-end">
-                    <form method = "post" action ="{{url_for('views.delete_question', question=question.id)}}">
+                    <form method = "POST" action ="{{url_for('views.delete_question', question=question.id)}}">
                         <button type="submit" class="close btn-custom-red m-3">
                             <span aria-hidden="true">&times;</span>
                         </button>
