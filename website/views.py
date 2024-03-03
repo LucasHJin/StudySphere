@@ -96,9 +96,9 @@ def respond_card():
         
         answers = question.answers
         print(answers, "ANSWERS")
-        return redirect(url_for('respond_card.html', user=current_user, question=question, question_id=question_id, question_data=question_data, answers=answers))  
+        return redirect(url_for('views.respond_card', user=current_user, question=question, question_id=question_id, answers=answers))  
 
-    return redirect(url_for('respond_card.html', user=current_user, question=question, question_id=question_id, question_data=question_data, answers=answers))  
+    return redirect(url_for('views.respond_card', user=current_user, question=question, question_id=question_id, question_data=question_data, answers=answers))  
 
 
 
@@ -107,18 +107,25 @@ def respond_card():
 @views.route('/search_card', methods = ['POST'])
 @login_required
 def search_card():
+    questionList = []
     #print("AAA")
     if request.method == 'POST':
         #print("BBB")
-        search = request.form.get('search')
-        if not search:
-            return jsonify({'success': False, 'message': 'Search is required.'}), 400
-        matching_tag = Tag.query.filter_by(name=search.upper()).first()
-        if matching_tag is not None:
-            questions = Question.query.filter(Question.tags.any(Tag.id == matching_tag.id)).all()
-            print('Math', questions)
-            return render_template('search_card.html', user = current_user, questionList = questions)
-    return render_template('search_card.html', user = current_user)
+        searchList = request.form.get('search').split(",")
+        for searchIndex in range(len(searchList)):
+            searchList[searchIndex] = searchList[searchIndex].strip()
+        for search in searchList:
+            if not search:
+                return jsonify({'success': False, 'message': 'Search is required.'}), 400
+            matching_tag = Tag.query.filter_by(name=search.upper()).first()
+            if matching_tag is not None:
+                questions = Question.query.filter(Question.tags.any(Tag.id == matching_tag.id)).all()
+                #print('Math', questions)
+                for question in questions:
+                    questionList.append(question)
+                    print(questionList)
+        return render_template('search_card.html', user = current_user, questionList = questionList)
+    return redirect (url_for('views.home'))
 
 
 
@@ -130,4 +137,4 @@ def delete_question():
         if question.user_id == current_user.id:
             db.session.delete(question)
             db.session.commit()
-    return redirect (url_for('views.search_card'))
+    return redirect (url_for('views.home'))

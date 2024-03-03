@@ -97,34 +97,34 @@
    
     <ul class="list-group list-group-flush" id="questions">
 
-    <h1>Questions</h1>
+    <h1 class="mt-5 fw-bold mb-2 custom-dark-blue">Questions</h1>
     <ul class="list-group list-group-flush" id="questions">
         {% for question in questionList %}
-        <li class="list-group-item">
+        <li class="list-group-item justify-content-between">
             <!--<button name = question.data class="btn-primary">
                 <a href="/respond_card">{{ question.data }}</a>
             </button>-->
-            <form action="/respond_card" method="POST">
-                <button type="submit" class="btn btn-primary">
-                    <a class="text-light" href="{{ url_for('views.respond_card', question_id=question.id) }}">{{ question.data }}</a>
-                </button>
-                <input type="hidden" name="question_id" value="{{ question.id }}">
-            </form>
-            <!-- Close button -->
-            <form method = "post" action ="{{url_for('views.delete_question', question=question.id)}}">
-                <button type="submit" class="close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </form>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-11">
+                    <form action="/respond_card" method="POST">
+                        <button type="submit" class="btn btn-custom-blue-rev">
+                            <a class="text-light" href="{{ url_for('views.respond_card', question_id=question.id) }}">{{ question.data }}</a>
+                        </button>
+                        <input type="hidden" name="question_id" value="{{ question.id }}">
+                    </form>
+                </div>
+                <!-- Close button -->
+                <div class="col-1 align-items-center justify-content-end">
+                    <form method = "post" action ="{{url_for('views.delete_question', question=question.id)}}">
+                        <button type="submit" class="close btn-custom-red m-3">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
         </li>
         {% endfor %}
     </ul>
-    <form method="POST">
-        <textarea class="question" name="question" placeholder="Enter your question here"></textarea>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Add Question</button>
-        </div>
-    </form>
 
 </div>
 

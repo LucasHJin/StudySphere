@@ -103,29 +103,18 @@
         background-color: #0c0e0b;
     }*/
 
-    .btn {
-        background-color: #c6d3e3; 
-        color: #98bad5;
-        font-size: 20px;
-        border: 2px solid #98bad5; 
-        padding: 20px; 
-        width: 100%; 
-        box-sizing: border-box;
-        border-radius: 20px; 
-        margin-top: 10px;
-    }
 </style>
 
 <div class="container">
-    <h2 class="text-primary mt-4">Add a Question</h2>
+    <h2 class="custom-dark-blue mt-4">Add a Question</h2>
     <form method="POST" action="{{ url_for('views.add_card') }}">
-        <textarea class="form-control mt-3" id="question" rows="8" name="question" placeholder="Enter your question here"></textarea>
+        <textarea class="form-control mt-3 form-bg text-white" id="question" rows="8" name="question" placeholder="Enter your question here..."></textarea>
 
         <div class="mb-3">
-            <label for="tag" class="form-label mt-4">Add Tags</label>
-            <input type="tag" class="form-control" id="tag" name="tag" placeholder="What subject is your question about?">
+            <label for="tag" class="form-label mt-4 custom-dark-blue">Add Tags</label>
+            <input type="tag" class="form-control form-bg text-white" id="tag" name="tag" placeholder="What subject is your question about?">
             <input type="hidden" name="question_id" value="{{ question_id }}">
-            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+            <button type="submit" class="btn btn-custom-blue mt-5">Submit</button>
         </div>
     </form>
 </div>

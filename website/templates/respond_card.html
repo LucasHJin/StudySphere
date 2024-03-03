@@ -6,34 +6,33 @@
     <div class="col-xl-12 col-md-6 container-flex">
         
         {% if question %}
-            <h1 class="mt-4 text-primary"> {{question_data}} </h1>
+            <h1 class="mt-5 text-bright-blue fw-bold fs-60"> {{question_data}} </h1>
         {% endif %}
 
-        <h2 class="text-primary-light mt-4">Your Response</h2>
         
-        <form action="/respond_card" method="POST"></form>
+        <form action="/respond_card" method="POST">
 
             <div class="mb-3 form group">
-                <label for="text" class="form-label mt-5">Enter a Text Reply</label>
-                <textarea name="answer" id="answer" class="form-control" cols="30" rows="10" placeholder="Type your response..." required></textarea>
+                <label for="text" class="form-label mt-5 custom-dark-blue fw-bold">Enter a Text Reply</label>
+                <textarea name="answer" id="answer" class="form-control form-bg text-white" cols="30" rows="10" placeholder="Type your response..." required></textarea>
                 <input type="hidden" id="question" name="question_id" value="{{question_id}}">
             </div>
 
             </br>
             <div class="row d-flex justify-content-between align-items-end form-group">
                 <div class="col-12 col-md-8">
-                    <button type="submit" class="btn btn-dark">Submit</button>
+                    <button type="submit" class="btn btn-custom-blue fw-bold mb-5">Submit</button>
                 </div>
             </div>
             
         </form>
 
-        <h2> <span class="badge text-bg-danger mt-4">More Answers?</span></h2>
+        <h2> <span class="badge bg-custom-red mt-4">More Answers?</span></h2>
                 {% for answer in answers %}
-                <form method="POST">\
-                    <div class="container bs-primary-border">
-                        <div class="card">
-                            <p class="text-light" href="{{ url_for('views.respond_card', answer_id=answer.id) }}">{{ answer.data }}</p>
+                <form method="POST">
+                    <div style="display: inline-block;" class="container-fluid bs-primary-border mb-2">
+                        <div class="card p-2">
+                            <textarea class="text-dark" href="{{ url_for('views.respond_card', answer_id=answer.id) }}" readonly>{{ answer.data }}</textarea>
                         </div>
                     </div>
                     <input type="hidden" name="answer_id" value="{{ answer.id }}">
@@ -48,3 +47,4 @@
 </div>
 
 {% endblock %}
+
