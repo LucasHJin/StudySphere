@@ -2,15 +2,10 @@
 {% block title %}Home{% endblock %}
 {% block content%}
 
-<style>
+<!--<style>
     /* CSS styles */
     body, html {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #57402A;
+        background-color: #c6d3e3;
     }
     .container {
         width: 400px;
@@ -19,6 +14,7 @@
         border-radius: 20px; /* Increased border radius */
         border: 4px solid #B99470; /* Increased border width */
         position: relative; /* Added position */
+        margin-top: 90px;
     }
 
     h1 {
@@ -61,22 +57,14 @@
         margin-bottom: 20px; /* Increased margin */
     }
 
-    .btn {
-        background-color: #5F6F52; /* Green color */
-        font-family: 'Comic Sans MS', 'Arial', sans-serif;
-        color: white;
-        font-size: 20px;
-        border: 2px solid #B99470; /* Increased border width */
-        padding: 20px; /* Increased padding */
-        width: 100%; /* Button width 100% of parent */
-        box-sizing: border-box;
-        border-radius: 20px; /* Increased border radius */
-        margin-top: 10px; /* Increased margin */
+    .btn{
+        background-color: #98bad5;
+        border: 2px solid #304674;
     }
 
     .btn:hover {
-        background-color: #1f241b; /* Darker green color on hover */
-        border: 2px solid #B99470; /* Increased border width */
+        background-color: #304674;
+        border: 2px solid #98bad5;
     }
 
     .custom-btn {
@@ -103,21 +91,31 @@
     .close:hover {
         background-color: #0c0e0b;
     }
-</style>
+</style>-->
 
 <div class="container">
    
     <ul class="list-group list-group-flush" id="questions">
 
-    <h1>QUESTIONS</h1>
+    <h1>Questions</h1>
     <ul class="list-group list-group-flush" id="questions">
-        {% for question in user.questions %}
+        {% for question in questionList %}
         <li class="list-group-item">
-            {{ question.data }}
+            <!--<button name = question.data class="btn-primary">
+                <a href="/respond_card">{{ question.data }}</a>
+            </button>-->
+            <form action="/respond_card" method="POST">
+                <button type="submit" class="btn btn-primary">
+                    <a class="text-light" href="{{ url_for('views.respond_card', question_id=question.id) }}">{{ question.data }}</a>
+                </button>
+                <input type="hidden" name="question_id" value="{{ question.id }}">
+            </form>
             <!-- Close button -->
-            <button type="button" class="close" onClick="deleteQuestion({{ question.id }})">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <form method = "post" action ="{{url_for('views.delete_question', question=question.id)}}">
+                <button type="submit" class="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </form>
         </li>
         {% endfor %}
     </ul>
@@ -127,6 +125,7 @@
             <button type="submit" class="btn btn-primary">Add Question</button>
         </div>
     </form>
+
 </div>
 
  {% endblock %}

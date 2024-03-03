@@ -16,7 +16,7 @@
 </head>
 <body>
  
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav style="background-color: #c6d3e3;" class="navbar-dark bg-primary navbar navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" href="/home">StudySphere</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,27 +26,22 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               
               {% if user.is_authenticated %}
+
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Play!</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/add_card">Add Cards</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/respond_card">Card Responses</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/profile">Profile</a>
+                  <a class="nav-link mr-8" href="/add_card">Add Cards</a>
                 </li>
               </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+              <form class="d-flex justify-content-end" role="search" method="POST" action="{{url_for('views.search_card')}}">
+                <input class="form-control me-2" type="search" name="search" id="search" placeholder="Search (separate by comma)">
+                <button class="btn btn-outline-primary" type="submit" href="/search_card">Search </button>
+              </form>
+
               {% else %}
+
               <a class="nav-item nav-link" id="login" href="/login">Login</a>
               <a class="nav-item nav-link" id="signUp" href="/sign_up">Sign Up</a>
+
               {% endif %}
 
           </div>

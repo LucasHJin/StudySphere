@@ -2,8 +2,8 @@
 {% block title %}Home{% endblock %}
 {% block content%}
 
-<!--<style>
-    body, html {
+<style>
+    /*body, html {
         height: 100%;
         margin: 0;
         display: flex;
@@ -58,7 +58,7 @@
         box-sizing: border-box;
         border-radius: 20px; 
         margin-bottom: 20px; 
-    }*/
+    }
 
     .btn {
         background-color: #5F6F52; 
@@ -101,26 +101,31 @@
 
     .close:hover {
         background-color: #0c0e0b;
+    }*/
+
+    .btn {
+        background-color: #c6d3e3; 
+        color: #98bad5;
+        font-size: 20px;
+        border: 2px solid #98bad5; 
+        padding: 20px; 
+        width: 100%; 
+        box-sizing: border-box;
+        border-radius: 20px; 
+        margin-top: 10px;
     }
-</style>-->
+</style>
 
 <div class="container">
-    <h1>QUESTIONS</h1>
+    <h2 class="text-primary mt-4">Add a Question</h2>
     <form method="POST" action="{{ url_for('views.add_card') }}">
-        <label for="question" class="form-label">Your Question</label>
-        <textarea class="form-control" id="question" rows="3" name="question" placeholder="Enter your question here"></textarea>
-        </br>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Add Question</button>
-        </div>
-    </form>
+        <textarea class="form-control mt-3" id="question" rows="8" name="question" placeholder="Enter your question here"></textarea>
 
-    <form method="POST" action="{{ url_for('views.add_card') }}">
         <div class="mb-3">
-            <label for="tag" class="form-label">Add Tags</label>
+            <label for="tag" class="form-label mt-4">Add Tags</label>
             <input type="tag" class="form-control" id="tag" name="tag" placeholder="What subject is your question about?">
             <input type="hidden" name="question_id" value="{{ question_id }}">
-            <button type="submit" class="btn btn-primary">Add Tag</button>
+            <button type="submit" class="btn btn-primary mt-5">Submit</button>
         </div>
     </form>
 </div>

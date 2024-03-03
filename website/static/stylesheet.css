@@ -50,3 +50,19 @@
 .white {
   color: white;
 }*/
+
+.text-primary{
+  color: 	#304674!important;
+}
+
+.nav-bg{
+  background-color: #98bad5;
+}
+
+.page-bg{
+  background-color: #c6d3e3;
+}
+
+bg-primary{
+  background-color: #c6d3e3!important; 
+}

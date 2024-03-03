@@ -16,7 +16,7 @@ class Tag(db.Model):
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now)
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User')
     answers = db.relationship('Answer', backref='question', lazy=True)
@@ -25,7 +25,7 @@ class Question(db.Model):
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now)
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User')
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'))
