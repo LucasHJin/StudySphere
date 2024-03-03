@@ -117,13 +117,19 @@ def search_card():
         for search in searchList:
             if not search:
                 return jsonify({'success': False, 'message': 'Search is required.'}), 400
+            matching_text = Question.query.filter(Question.data.contains(search.casefold()))
             matching_tag = Tag.query.filter_by(name=search.upper()).first()
             if matching_tag is not None:
                 questions = Question.query.filter(Question.tags.any(Tag.id == matching_tag.id)).all()
                 #print('Math', questions)
                 for question in questions:
-                    questionList.append(question)
+                    if question not in questionList:
+                        questionList.append(question)
                     print(questionList)
+            if matching_text is not None:
+                for question in matching_text:
+                    if question not in questionList:
+                        questionList.append(question)
         return render_template('search_card.html', user = current_user, questionList = questionList)
     return redirect (url_for('views.home'))
 
